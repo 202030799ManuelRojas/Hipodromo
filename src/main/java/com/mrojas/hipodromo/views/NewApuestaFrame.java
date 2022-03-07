@@ -27,7 +27,7 @@ public class NewApuestaFrame extends javax.swing.JFrame {
     
     private NewApuestaController controller;
     
-    public NewApuestaFrame(ListaEnlazada<Apuesta> apuestas) {
+    public NewApuestaFrame(ListaEnlazada apuestas) {
         initComponents();
         FrameUtil.personalizar(this);
         controller = new NewApuestaController(this, apuestas);

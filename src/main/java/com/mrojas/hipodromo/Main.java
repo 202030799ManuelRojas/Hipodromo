@@ -42,7 +42,6 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btmPushApuesta = new javax.swing.JButton();
-        btmValidApuesta = new javax.swing.JButton();
         btmPushResult = new javax.swing.JButton();
         btmResult = new javax.swing.JButton();
         btmReport = new javax.swing.JButton();
@@ -89,10 +88,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btmPushApuesta);
-
-        btmValidApuesta.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        btmValidApuesta.setText("Verificar Apuestas");
-        jPanel1.add(btmValidApuesta);
 
         btmPushResult.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         btmPushResult.setText("Ingresar Resultados");
@@ -195,7 +190,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btmPushResult;
     private javax.swing.JButton btmReport;
     private javax.swing.JButton btmResult;
-    private javax.swing.JButton btmValidApuesta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

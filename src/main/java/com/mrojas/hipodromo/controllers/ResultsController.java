@@ -16,9 +16,9 @@ import com.mrojas.hipodromo.views.ResultsFrame;
 public class ResultsController {
 
     private ResultsFrame frame;
-    private ListaEnlazada<Apuesta> apuestas;
+    private ListaEnlazada apuestas;
 
-    public ResultsController(ResultsFrame frame, ListaEnlazada<Apuesta> apuestas) {
+    public ResultsController(ResultsFrame frame, ListaEnlazada apuestas) {
         this.frame = frame;
         this.apuestas = apuestas;
         actualizarTabla();

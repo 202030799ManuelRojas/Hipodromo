@@ -107,13 +107,13 @@ public class Parser extends java_cup.runtime.lr_parser {
 
 
 
-    private ListaEnlazada<Apuesta> apuestas = new ListaEnlazada<>();
+    private ListaEnlazada apuestas = new ListaEnlazada();
 
-    public ListaEnlazada<Apuesta> getApuestas(){
+    public ListaEnlazada getApuestas(){
         return this.apuestas;
     }
 
-    public void setApuestas(ListaEnlazada<Apuesta> apuestas){
+    public void setApuestas(ListaEnlazada apuestas){
         this.apuestas = apuestas;
     }
 

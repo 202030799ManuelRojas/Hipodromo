@@ -16,7 +16,7 @@ public class Hipodromo {
     
     public static Horse[] COMPETIDORES = new Horse[10];
 
-    private ListaEnlazada<Apuesta>  apuestas = new ListaEnlazada<>();
+    private ListaEnlazada  apuestas = new ListaEnlazada();
     private Carrera carrera = new Carrera(COMPETIDORES);;
 
     public Hipodromo(){
@@ -38,11 +38,11 @@ public class Hipodromo {
         }
     }
 
-    public ListaEnlazada<Apuesta> getApuestas() {
+    public ListaEnlazada getApuestas() {
         return apuestas;
     }
 
-    public void setApuestas(ListaEnlazada<Apuesta> apuestas) {
+    public void setApuestas(ListaEnlazada apuestas) {
         this.apuestas = apuestas;
     }
 

@@ -41,7 +41,7 @@ public class ArchivesController {
      * @param path Se requiere indicar la ruta del archivo que se quiere leer
      * @return Retorna una lista de Strings con el contenido del archivo
      */
-    public static void addApuestasFile(String path, ListaEnlazada<Apuesta> add) {
+    public static void addApuestasFile(String path, ListaEnlazada add) {
         //List<String> response = new ArrayList<>();
         Charset utf8 = Charset.forName("UTF-8");
         try (

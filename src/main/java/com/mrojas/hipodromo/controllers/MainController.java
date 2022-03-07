@@ -21,12 +21,12 @@ public class MainController {
     Main frame;
     private Hipodromo hipodromo;
     
-    private ListaEnlazada<Apuesta> apuestas;
+    private ListaEnlazada apuestas;
     
     public MainController(Main frame){
         this.frame = frame;
         this.hipodromo = new Hipodromo();
-        apuestas = new ListaEnlazada<>();
+        apuestas = new ListaEnlazada();
         mostrarCompetidores();
         
     }

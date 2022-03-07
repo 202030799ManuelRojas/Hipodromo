@@ -23,9 +23,9 @@ public class InputResultsController {
     private InputResultsFrame frame;
     private DefaultListModel<Horse> model;
     private int cantHorses = 0;
-    private ListaEnlazada<Apuesta> apuestas;
+    private ListaEnlazada apuestas;
 
-    public InputResultsController(InputResultsFrame frame, ListaEnlazada<Apuesta> apuestas) {
+    public InputResultsController(InputResultsFrame frame, ListaEnlazada apuestas) {
         this.frame = frame;
         this.apuestas = apuestas;
         listarCompetidores();
@@ -53,13 +53,14 @@ public class InputResultsController {
         System.out.println("Apuestas antes de validar " + apuestas.size());
         apuestas = getValidApuestas(apuestas);
         System.out.println("Apuestas luego de validar " + apuestas.size());
+        apuestas.insertionSort(false);
         ResultsFrame resultados = new ResultsFrame(apuestas);
         resultados.setVisible(true);
         frame.dispose();
     }
     
-    public ListaEnlazada<Apuesta> getValidApuestas(ListaEnlazada<Apuesta> todas){
-        ListaEnlazada<Apuesta> validas = new ListaEnlazada<>();
+    public ListaEnlazada getValidApuestas(ListaEnlazada todas){
+        ListaEnlazada validas = new ListaEnlazada();
         while (todas.size() > 0) {            
             Apuesta apuesta = todas.pop();
             if (apuesta.isValid()) {

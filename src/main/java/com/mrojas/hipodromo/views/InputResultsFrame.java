@@ -26,7 +26,7 @@ public class InputResultsFrame extends javax.swing.JFrame {
      * Creates new form InputResultsFrame
      * @param apuestas
      */
-    public InputResultsFrame(ListaEnlazada<Apuesta> apuestas) {
+    public InputResultsFrame(ListaEnlazada apuestas) {
         initComponents();
         FrameUtil.personalizar(this);
         controller = new InputResultsController(this, apuestas);

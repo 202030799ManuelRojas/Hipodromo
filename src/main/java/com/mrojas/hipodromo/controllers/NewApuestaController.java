@@ -22,9 +22,9 @@ public class NewApuestaController {
     private NewApuestaFrame frame;
     private DefaultListModel<Horse> model;
     private int cantHorses = 0;
-    private ListaEnlazada<Apuesta> apuestas;
+    private ListaEnlazada apuestas;
     
-    public NewApuestaController(NewApuestaFrame frame, ListaEnlazada<Apuesta> apuestas) {
+    public NewApuestaController(NewApuestaFrame frame, ListaEnlazada apuestas) {
         this.apuestas = apuestas;
         this.frame = frame;
         listarCompetidores();

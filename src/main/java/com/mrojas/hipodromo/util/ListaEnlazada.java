@@ -1,12 +1,13 @@
 package com.mrojas.hipodromo.util;
 
+import com.mrojas.hipodromo.models.Apuesta;
+
 /**
  *
  * @author manu
- * @param <Apuesta>
  */
 
-public class ListaEnlazada <Apuesta> {
+public class ListaEnlazada {
 
     private Nodo<Apuesta> first;
     private Nodo<Apuesta> last;
@@ -39,6 +40,30 @@ public class ListaEnlazada <Apuesta> {
         }
         size--;
         return value;
+    }
+    
+
+    public void insertionSort(boolean isAlfabetic) {
+        Nodo <Apuesta> anterior = first;
+        Nodo <Apuesta> actual;
+        Apuesta temporal;
+        
+        while(anterior != null){
+            actual = anterior;
+            temporal = anterior.getValue();
+            
+            while (actual != first 
+                    && (isAlfabetic 
+                    ? temporal.getApostador().getName().compareTo(actual.getBefore().getValue().getApostador().getName()) < 0 
+                    : temporal.getApostador().getPuntaje() > actual.getBefore().getValue().getApostador().getPuntaje())) {                
+                actual.setValue(actual.getBefore().getValue());
+                actual = actual.getBefore();
+            }
+            actual.setValue(temporal);
+            anterior = anterior.getNext();
+        }
+        
+        
     }
 
     /*
@@ -95,6 +120,10 @@ class Nodo<T>{
     
     public T getValue() {
         return value;
+    }
+    
+    public void setValue(T value){
+        this.value = value;
     }
 
     public Nodo<T> getNext() {

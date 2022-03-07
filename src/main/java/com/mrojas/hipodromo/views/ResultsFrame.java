@@ -20,7 +20,7 @@ public class ResultsFrame extends javax.swing.JFrame {
      */
     private ResultsController controller;
     
-    public ResultsFrame(ListaEnlazada<Apuesta> apuestas) {
+    public ResultsFrame(ListaEnlazada apuestas) {
         initComponents();
         controller = new ResultsController(this, apuestas);
         
