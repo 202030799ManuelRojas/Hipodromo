@@ -142,7 +142,7 @@ public class Parser extends java_cup.runtime.lr_parser {
         System.out.println(error);
     }
 
-    private Horse[] apuestaHorse(Double[] posiciones){
+    private Horse[] validHorses(Double[] posiciones){
         Horse[] caballos = new Horse[10];
         for(int i = 0; i<caballos.length ; i++){
             if(posiciones[i] > 0 && posiciones[i] < 11){
@@ -159,9 +159,11 @@ public class Parser extends java_cup.runtime.lr_parser {
     }
 
     private void agregarApuesta(String name, Double monto, Double[] posiciones){
-        Horse[] caballos = apuestaHorse(posiciones);
+        Horse[] caballos = validHorses(posiciones);
         if(caballos != null){
             apuestas.push(new Apuesta(name, monto, caballos));
+        }else{
+            System.out.println("Se ha detectado un número de caballo incorrecto para la apuesta de: " + name);
         }
     }
 

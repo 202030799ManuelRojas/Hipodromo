@@ -65,7 +65,6 @@ public class Apuesta {
         setMenVerificar(pasosVerificar);
         fin = System.nanoTime();
         timeVerificar = (fin-inicio);
-        System.out.println("apuesta de: " + apostador.getName() + " " +timeVerificar);
         return true;
     }
 
