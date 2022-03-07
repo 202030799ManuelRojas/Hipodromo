@@ -12,11 +12,18 @@ public class ListaEnlazada {
     private Nodo<Apuesta> first;
     private Nodo<Apuesta> last;
     private int size = 0;
-
+    /**
+     * Constructor de una lista enlazada para apuestas
+     */
     public ListaEnlazada(){
         first = null;
         last = null;
     }
+
+    /**
+     * Método para ingresar una nueva apuesta. Tiene un tiene un time complexity de O(1).
+     * @param value la apuesta que se va a ingresar a la lista.
+     */
 
     public void push(Apuesta value){
         if (first == null){
@@ -30,6 +37,11 @@ public class ListaEnlazada {
         this.size++;
     }
 
+    /**
+     * Método para eliminar el ultimo elemento de la lista de apuestas. Tiene un time complexity de O(n).
+     * @return retorna el último elemento de la lista de apuestas
+     */
+
     public Apuesta pop(){
         Apuesta value = last.getValue();
         last = last.getBefore();
@@ -42,6 +54,10 @@ public class ListaEnlazada {
         return value;
     }
     
+    /**
+     * Métod para ordenar la lista con las apuestas. Es del tipo insertion sort, tiene un time complexity de O(n2)
+     * @param isAlfabetic valor que indica si se ordenará de manera alfabetica (true) o por punteo (false).
+     */
 
     public void insertionSort(boolean isAlfabetic) {
         Nodo <Apuesta> anterior = first;
@@ -64,6 +80,15 @@ public class ListaEnlazada {
         }
         
         
+    }
+
+    /**
+     * Metodo para saber el tamaño de la lista de apuestas acumuladas
+     * @return el tamaño de la lista.
+     */
+
+    public int size(){
+        return this.size;
     }
 
     /*
@@ -93,9 +118,7 @@ public class ListaEnlazada {
         return apuestas;
     }
     */
-    public int size(){
-        return this.size;
-    }
+
 
 }
 

@@ -16,10 +16,54 @@ public class Apuesta {
     private Horse[] horses;
     private double monto;
 
+    /**
+     * Constructor para crear una nueva apuesta
+     * 
+     * @param apostador nombre de la persona que está apostando
+     * @param monto     el monto que apostará la persona
+     * @param horses    arreglo con los caballos a los que les apostó
+     */
+
     public Apuesta(String apostador, double monto, Horse[] horses) {
         this.apostador = new Apostador(apostador);
         this.horses = alphabeticSort(horses);
         this.monto = monto;
+    }
+
+    /**
+     * Método que valida si la apuesta es válida o no. Posee un time complexity de
+     * O(n)
+     * 
+     * @return retorna false si existe algún caballo repetido dentro de la apuesta,
+     *         de lo contrario es true.
+     */
+
+    public boolean isValid() {
+        for (int i = 0; i < horses.length - 1; i++) {
+            if (horses[i].equals(horses[i + 1])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Método que calcula el punteo obtenido por el apostador en función de los
+     * caballos a los que les apostó. Tiene un time complexity de O(n)
+     * 
+     * @param ganadores arreglo de los caballos con los cuales se comparará para
+     *                  calcular los resultados.
+     */
+    public void calcularPunteo(Horse[] ganadores) {
+        int punteo = 10;
+
+        for (int i = 0; i < ganadores.length; i++) {
+            if (ganadores[i].getLugar() == horses[i].getLugar()) {
+                apostador.setPuntaje(punteo);
+            }
+            punteo--;
+        }
+
     }
 
     public Apostador getApostador() {
@@ -36,27 +80,6 @@ public class Apuesta {
 
     public void setMonto(double monto) {
         this.monto = monto;
-    }
-
-    public boolean isValid() {
-        for (int i = 0; i < horses.length - 1; i++) {
-            if (horses[i].equals(horses[i + 1])) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    public void calcularPunteo(Horse[] ganadores){
-        int punteo = 10;
-
-        for (int i = 0; i < ganadores.length; i++) {
-            if (ganadores[i].getLugar() == horses[i].getLugar()) {
-                apostador.setPuntaje(punteo);
-            }
-            punteo--;
-        }
-                
     }
 
     private static Horse[] alphabeticSort(Horse[] array) { // insertion sort
@@ -79,7 +102,5 @@ public class Apuesta {
     public String toString() {
         return "Apuesta [apostador=" + apostador + ", horses=" + Arrays.toString(horses) + ", monto=" + monto + "]";
     }
-    
-
 
 }

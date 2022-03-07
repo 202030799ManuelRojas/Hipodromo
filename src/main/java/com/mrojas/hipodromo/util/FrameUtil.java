@@ -12,7 +12,10 @@ import javax.swing.JFrame;
  */
 public class FrameUtil {
     
-    
+    /**
+     * Método para personalizar las ventanas de la aplicación.
+     * @param frame
+     */
     public static void personalizar(JFrame frame){
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);

@@ -23,6 +23,12 @@ public class NewApuestaController {
     private DefaultListModel<Horse> model;
     private int cantHorses = 0;
     private ListaEnlazada apuestas;
+
+    /**
+     * Constructor para el controlador de la ventana para agregar una nueva apuesta.
+     * @param frame el frame correspondiente a la ventana para una nueva apuesta.
+     * @param apuestas listado de las apuestas acumuladas.
+     */
     
     public NewApuestaController(NewApuestaFrame frame, ListaEnlazada apuestas) {
         this.apuestas = apuestas;
@@ -31,6 +37,10 @@ public class NewApuestaController {
         model = new DefaultListModel<>();
         frame.getBtmAgregarApuesta().setEnabled(false);
     }
+
+    /**
+     * Metodo para agregar el orden de llegada de un caballo dentro de la nueva apuesta.
+     */
     
     public void agregarCaballo(){
         Horse select = (Horse) frame.getListaCompetidores().getSelectedItem();
@@ -41,6 +51,10 @@ public class NewApuestaController {
         cantHorses++;
         actualizarBoton();
     }
+
+    /**
+     * metodo para validar y agregar una nueva apuesta.
+     */
     
     public void agregarApuesta(){
         String name = frame.getTxtName().getText();
@@ -54,10 +68,19 @@ public class NewApuestaController {
             JOptionPane.showMessageDialog(frame, "¡Apuesta ingresada!", "Apuesta ingresada", JOptionPane.PLAIN_MESSAGE);
         }
     }
+
+    /**
+     * Metodo que carga el archivo de entrada seleccionado por el usuario.
+     */
     
     public void cargarTxtFile(){
         ArchivesController.addApuestasFile(ArchivesController.getFileChooserPath(), apuestas);
+        JOptionPane.showMessageDialog(null, "Se ha cargado el archivo de entrada", "Archivo cargado", JOptionPane.PLAIN_MESSAGE);
     }
+
+    /**
+     * metodo para limpiar los campos del frame
+     */
     
     public void clear() {
         frame.getTxtMonto().setText("");

@@ -121,10 +121,12 @@ public class Parser extends java_cup.runtime.lr_parser {
      * Método al que se llama automáticamente ante algún error sintactico.
      **/ 
     public void syntax_error(Symbol s){
-
+        String error = "Error Sintáctico en la Línea " + (s.left) +
+        " Columna "+s.right+ ". No se esperaba este componente: " +s.value; 
+        JOptionPane.showMessageDialog(null, error, "Error Sintáctico", JOptionPane.WARNING_MESSAGE);
+        System.out.println(error);
         
-        System.out.println("Error Sintáctico en la Línea " + (s.left) +
-        " Columna "+s.right+ ". No se esperaba este componente: " +s.value+"."); 
+
         
     }
 

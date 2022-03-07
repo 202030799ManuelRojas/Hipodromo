@@ -17,6 +17,13 @@ public class Horse {
     private int numero;
     private int lugar;
 
+    /**
+     * Constructor para crear un nuevo caballo
+     * 
+     * @param name el nombre que tendrá el caballo
+     * @param numero el número que tendrá el caballo
+     */
+
     public Horse(String name, int numero) {
         this.name = name;
         this.numero = numero;

@@ -12,6 +12,12 @@ public class Apostador {
     String name;
     int puntaje;
 
+    /**
+     * Constructor para un nuevo apostador.
+     * 
+     * @param name el nombre que tendrá el apostador.
+     */
+
     public Apostador(String name) {
         this.name = name;
         this.puntaje = 0;
@@ -62,5 +68,4 @@ public class Apostador {
         return "Apostador [name=" + name + ", puntaje=" + puntaje + "]";
     }
 
-    
 }

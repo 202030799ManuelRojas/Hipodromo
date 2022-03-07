@@ -100,6 +100,11 @@ public class Main extends javax.swing.JFrame {
 
         btmResult.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         btmResult.setText("Ver Resultados");
+        btmResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmResultActionPerformed(evt);
+            }
+        });
         jPanel1.add(btmResult);
 
         btmReport.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
@@ -131,6 +136,10 @@ public class Main extends javax.swing.JFrame {
     private void btmPushResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmPushResultActionPerformed
         controller.inputResults();
     }//GEN-LAST:event_btmPushResultActionPerformed
+
+    private void btmResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmResultActionPerformed
+        controller.showResults();
+    }//GEN-LAST:event_btmResultActionPerformed
 
     /**
      * @param args the command line arguments

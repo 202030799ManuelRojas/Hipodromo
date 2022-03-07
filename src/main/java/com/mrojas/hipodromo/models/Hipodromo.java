@@ -14,6 +14,9 @@ public class Hipodromo {
 
     public static final String[] NAME_HORSES = { "Affirmed","Assault","Citation", "Gallant Fox","Justify", "Omaha", "Secretariat", "Sir Barton",  "War Admiral", "Whirlaway"};
     
+    /**
+     * Arreglo de los competidores del hipodromo.
+     */
     public static Horse[] COMPETIDORES = new Horse[10];
 
     private ListaEnlazada  apuestas = new ListaEnlazada();

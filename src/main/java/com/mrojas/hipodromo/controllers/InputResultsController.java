@@ -10,7 +10,6 @@ import com.mrojas.hipodromo.models.Horse;
 import com.mrojas.hipodromo.util.ListaEnlazada;
 import com.mrojas.hipodromo.views.InputResultsFrame;
 import com.mrojas.hipodromo.views.ResultsFrame;
-import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -25,6 +24,12 @@ public class InputResultsController {
     private int cantHorses = 0;
     private ListaEnlazada apuestas;
 
+    /**
+     * Constructor para el controlador de la ventana para ingresar los resultados
+     * @param frame ventana correspondiente al ingreso de resultados.
+     * @param apuestas listado de apuestas de la app.
+     */
+
     public InputResultsController(InputResultsFrame frame, ListaEnlazada apuestas) {
         this.frame = frame;
         this.apuestas = apuestas;
@@ -33,31 +38,35 @@ public class InputResultsController {
         
     }
 
-    private void listarCompetidores() {
-        for (int i = 0; i < Hipodromo.COMPETIDORES.length; i++) {
-            frame.getListaCompetidores().addItem(Hipodromo.COMPETIDORES[i]);
-        }
-    }
-    
+    /**
+     * Metodo para limpiar los campos del frame.
+     */
     public void clear(){
         cantHorses = 0;
         model.removeAllElements();
         actualizarBoton();
         listarCompetidores();
     }
+
+    /**
+     * Metodo para agregar los resultados de las posiciones de los caballos.
+     */
     
     public void agregarResultado(){
-        System.out.println(Arrays.toString(Hipodromo.COMPETIDORES));
         clear();
-        JOptionPane.showMessageDialog(frame, "¡Resultados ingresados!", "Resultados ingresados", JOptionPane.PLAIN_MESSAGE);
-        System.out.println("Apuestas antes de validar " + apuestas.size());
+        JOptionPane.showMessageDialog(frame, "¡Resultados ingresados y procesados!", "Resultados ingresados", JOptionPane.PLAIN_MESSAGE);
         apuestas = getValidApuestas(apuestas);
-        System.out.println("Apuestas luego de validar " + apuestas.size());
-        apuestas.insertionSort(false);
         ResultsFrame resultados = new ResultsFrame(apuestas);
         resultados.setVisible(true);
         frame.dispose();
     }
+
+    /**
+     * Metodo para obtener las apuestas validas de todas las que se han ingresado.
+     * Tiene un time complexity de O(n)
+     * @param todas listado de las apuestas acumuladas.
+     * @return Retorna una lista con las apuestas validas.
+     */
     
     public ListaEnlazada getValidApuestas(ListaEnlazada todas){
         ListaEnlazada validas = new ListaEnlazada();
@@ -73,6 +82,10 @@ public class InputResultsController {
         return validas;
     }
 
+    /**
+     * Metodo para agregar la posicion de llegada de un caballo desde la interfaz grafica.
+     */
+
     public void agregarCaballo() {
         Horse select = (Horse) frame.getListaCompetidores().getSelectedItem();
         select.setLugar(cantHorses + 1);
@@ -82,18 +95,31 @@ public class InputResultsController {
         cantHorses++;
         actualizarBoton();
     }
+
+    /**
+     * Metodo para listas los competidores en la lista de seleccion.
+     */
+
+    private void listarCompetidores() {
+        for (int i = 0; i < Hipodromo.COMPETIDORES.length; i++) {
+            frame.getListaCompetidores().addItem(Hipodromo.COMPETIDORES[i]);
+        }
+    }
+
+    /**
+     * Metodo para actualizar el boton para hacerlo interactivo con el usuario.
+     */
     
-        private void actualizarBoton(){
+    private void actualizarBoton() {
         if (cantHorses >= Hipodromo.COMPETIDORES.length) {
             frame.getBtmAgregarCaballo().setEnabled(false);
             frame.getBtmAgregarResultados().setEnabled(true);
-        }else{
-            frame.getBtmAgregarCaballo().setText("Agregar " + (cantHorses+1) + "° Lugar" );
+        } else {
+            frame.getBtmAgregarCaballo().setText("Agregar " + (cantHorses + 1) + "° Lugar");
             frame.getBtmAgregarResultados().setEnabled(false);
             frame.getBtmAgregarCaballo().setEnabled(true);
         }
-        
-        
+
     }
 
 }

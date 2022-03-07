@@ -6,6 +6,7 @@ package com.mrojas.hipodromo.views;
 
 import com.mrojas.hipodromo.controllers.ResultsController;
 import com.mrojas.hipodromo.models.Apuesta;
+import com.mrojas.hipodromo.util.FrameUtil;
 import com.mrojas.hipodromo.util.ListaEnlazada;
 import javax.swing.JTable;
 
@@ -22,6 +23,7 @@ public class ResultsFrame extends javax.swing.JFrame {
     
     public ResultsFrame(ListaEnlazada apuestas) {
         initComponents();
+        FrameUtil.personalizar(this);
         controller = new ResultsController(this, apuestas);
         
     }
@@ -45,6 +47,11 @@ public class ResultsFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaResultados = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        listaOrden = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,14 +75,56 @@ public class ResultsFrame extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jLabel2.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        jLabel2.setText("Ordenar por:");
+        jPanel1.add(jLabel2);
+
+        listaOrden.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        listaOrden.setMaximumRowCount(2);
+        listaOrden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Punteo (Max-Min)", "Nombre (A-Z)" }));
+        jPanel1.add(listaOrden);
+
+        jButton1.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        jButton1.setText("Ordenar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+
+        jButton2.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_END);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        controller.sortApuestas(listaOrden.getSelectedIndex());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> listaOrden;
     private javax.swing.JTable tablaResultados;
     // End of variables declaration//GEN-END:variables
 }
