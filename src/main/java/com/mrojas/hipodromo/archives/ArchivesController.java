@@ -7,6 +7,7 @@ package com.mrojas.hipodromo.archives;
 import com.mrojas.hipodromo.archives.analizador.lexer.Lexer;
 import com.mrojas.hipodromo.archives.analizador.parser.Parser;
 import com.mrojas.hipodromo.models.Apuesta;
+import com.mrojas.hipodromo.models.Horse;
 import com.mrojas.hipodromo.util.ListaEnlazada;
 import java.io.*;
 import java.nio.charset.Charset;
@@ -60,6 +61,29 @@ public class ArchivesController {
         } catch (IOException e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "Ocurrió un error al intentar cargar el archivo", "Archivo no cargado", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public static void guardarArchivo(String path, ListaEnlazada apuestas) {
+        File archivo = new File(path+".csv");
+        ListaEnlazada copyApuesta = new ListaEnlazada();
+        try ( PrintWriter buffer = new PrintWriter(new FileWriter(archivo, true))) {
+
+            while (apuestas.size() > 0) {                
+                Apuesta aux = apuestas.pop();
+                copyApuesta.push(aux);
+                buffer.print(aux.getApostador().getName() + ", " + aux.getMonto());
+                for (int i = 0; i < aux.getHorses().length; i++) {
+                    buffer.print(", " + aux.getHorses()[i].getNumero());
+                }
+                buffer.println();
+                
+            }
+            apuestas = copyApuesta;
+            // buffer.close();
+            JOptionPane.showMessageDialog(null, "Archivo guardado con éxito", "Archivo guardado", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al intentar crear el archivo", "Archivo no generado", JOptionPane.ERROR_MESSAGE);
         }
     }
 

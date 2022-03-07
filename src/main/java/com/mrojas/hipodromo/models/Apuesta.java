@@ -34,8 +34,8 @@ public class Apuesta {
 
     public Apuesta(String apostador, double monto, Horse[] horses) {
         this.apostador = new Apostador(apostador);
-        this.horses = alphabeticSort(horses);
         this.monto = monto;
+        this.horses = horses;
     }
 
     /**
@@ -47,6 +47,7 @@ public class Apuesta {
      */
 
     public boolean isValid() {
+        this.horses = alphabeticSort(horses);
         pasosVerificar = 2;
         long inicio = System.nanoTime();
         long fin;

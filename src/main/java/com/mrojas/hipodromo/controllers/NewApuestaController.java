@@ -79,6 +79,10 @@ public class NewApuestaController {
         ArchivesController.addApuestasFile(ArchivesController.getFileChooserPath(), apuestas);
         JOptionPane.showMessageDialog(null, "Se ha cargado el archivo de entrada", "Archivo cargado", JOptionPane.PLAIN_MESSAGE);
     }
+    
+    public void saveFile(){
+        ArchivesController.guardarArchivo(ArchivesController.getFileChooserPath(), apuestas);
+    }
 
     /**
      * metodo para limpiar los campos del frame

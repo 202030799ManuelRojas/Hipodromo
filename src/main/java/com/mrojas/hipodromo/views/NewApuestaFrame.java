@@ -281,6 +281,11 @@ public class NewApuestaFrame extends javax.swing.JFrame {
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem1.setText("Guardar archivo");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -352,6 +357,10 @@ public class NewApuestaFrame extends javax.swing.JFrame {
     private void btmClear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmClear1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_btmClear1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        controller.saveFile();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
