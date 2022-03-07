@@ -5,9 +5,7 @@
 package com.mrojas.hipodromo;
 
 import com.mrojas.hipodromo.controllers.MainController;
-import com.mrojas.hipodromo.models.Hipodromo;
 import com.mrojas.hipodromo.util.FrameUtil;
-import com.mrojas.hipodromo.views.NewApuestaFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
@@ -109,6 +107,11 @@ public class Main extends javax.swing.JFrame {
 
         btmReport.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         btmReport.setText("Reportes");
+        btmReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmReportActionPerformed(evt);
+            }
+        });
         jPanel1.add(btmReport);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_END);
@@ -140,6 +143,10 @@ public class Main extends javax.swing.JFrame {
     private void btmResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmResultActionPerformed
         controller.showResults();
     }//GEN-LAST:event_btmResultActionPerformed
+
+    private void btmReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmReportActionPerformed
+        controller.showReports();
+    }//GEN-LAST:event_btmReportActionPerformed
 
     /**
      * @param args the command line arguments

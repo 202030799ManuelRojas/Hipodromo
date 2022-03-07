@@ -4,6 +4,7 @@
  */
 package com.mrojas.hipodromo.util;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -19,8 +20,6 @@ public class FrameUtil {
     public static void personalizar(JFrame frame){
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        //para agregar imagen icon
-        //frame.setIconImage(new ImageIcon(getClass().getResource("/images/snake.png")).getImage());
         
     }
 }

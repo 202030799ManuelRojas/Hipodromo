@@ -9,7 +9,9 @@ import com.mrojas.hipodromo.models.Hipodromo;
 import com.mrojas.hipodromo.util.ListaEnlazada;
 import com.mrojas.hipodromo.views.InputResultsFrame;
 import com.mrojas.hipodromo.views.NewApuestaFrame;
+import com.mrojas.hipodromo.views.ReportsFrame;
 import com.mrojas.hipodromo.views.ResultsFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,6 +33,7 @@ public class MainController {
 
     public MainController(Main frame) {
         this.frame = frame;
+        frame.setIconImage(new ImageIcon(getClass().getResource("/images/hipodromo.png")).getImage());
         this.hipodromo = new Hipodromo();
         apuestas = new ListaEnlazada();
         mostrarCompetidores();
@@ -70,6 +73,11 @@ public class MainController {
                     JOptionPane.WARNING_MESSAGE);
         }
 
+    }
+    
+    public void showReports(){
+        ReportsFrame reports = new ReportsFrame();
+        reports.setVisible(true);
     }
 
     /**

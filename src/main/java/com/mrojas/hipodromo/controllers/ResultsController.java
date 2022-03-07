@@ -7,6 +7,7 @@ package com.mrojas.hipodromo.controllers;
 import com.mrojas.hipodromo.models.Apuesta;
 import com.mrojas.hipodromo.util.ListaEnlazada;
 import com.mrojas.hipodromo.views.ResultsFrame;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -24,6 +25,7 @@ public class ResultsController {
      */
     public ResultsController(ResultsFrame frame, ListaEnlazada apuestas) {
         this.frame = frame;
+        frame.setIconImage(new ImageIcon(getClass().getResource("/images/hipodromo.png")).getImage());
         this.apuestas = apuestas;
         actualizarTabla(false);
     }

@@ -11,6 +11,7 @@ import com.mrojas.hipodromo.util.ListaEnlazada;
 import com.mrojas.hipodromo.views.InputResultsFrame;
 import com.mrojas.hipodromo.views.ResultsFrame;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +24,12 @@ public class InputResultsController {
     private DefaultListModel<Horse> model;
     private int cantHorses = 0;
     private ListaEnlazada apuestas;
+    static long timeVerificar;
+    static long timePuntaje;
+    static int cantApuestas;
+    static int cantApuestasValidas;
+    static int pasosVerificar;
+    static int pasosPuntaje;
 
     /**
      * Constructor para el controlador de la ventana para ingresar los resultados
@@ -32,6 +39,7 @@ public class InputResultsController {
 
     public InputResultsController(InputResultsFrame frame, ListaEnlazada apuestas) {
         this.frame = frame;
+        frame.setIconImage(new ImageIcon(getClass().getResource("/images/hipodromo.png")).getImage());
         this.apuestas = apuestas;
         listarCompetidores();
         model = new DefaultListModel<>();
@@ -69,6 +77,9 @@ public class InputResultsController {
      */
     
     public ListaEnlazada getValidApuestas(ListaEnlazada todas){                         //1
+        
+        resetCounters();
+        cantApuestas = todas.size();
         ListaEnlazada validas = new ListaEnlazada();                                    //1
         while (todas.size() > 0) {                                                      //n
             Apuesta apuesta = todas.pop();                                              //1
@@ -78,6 +89,11 @@ public class InputResultsController {
             }else{
                 System.out.println("Apuesta no valida de: " + apuesta.getApostador());  //1
             }
+            timeVerificar += apuesta.getTimeVerificar();
+            timePuntaje += apuesta.getTimePuntaje();
+            pasosVerificar += apuesta.getPasosVerificar();
+            pasosPuntaje += apuesta.getPasosPuntaje();
+            cantApuestasValidas = validas.size();
         }
         return validas;                                                                 //1
     }
@@ -94,6 +110,24 @@ public class InputResultsController {
         frame.getListaCompetidores().removeItem(select);
         cantHorses++;
         actualizarBoton();
+    }
+
+    public static double getTimePromedioValidar(){
+        System.out.println("time total: " + timeVerificar);
+        return timeVerificar/cantApuestas;
+    }
+
+    public static double getTimePromedioPuntaje(){
+        System.out.println("time total: " + timePuntaje);
+        return timePuntaje/cantApuestas;
+    }
+
+    public static double getPasosPromedioVerificar(){
+        return pasosVerificar/cantApuestas;
+    }
+
+    public static double getPasosPromedioPuntaje(){
+        return pasosPuntaje/cantApuestasValidas;
     }
 
     /**
@@ -120,6 +154,13 @@ public class InputResultsController {
             frame.getBtmAgregarCaballo().setEnabled(true);
         }
 
+    }
+
+    private void resetCounters(){
+        timeVerificar = 0;
+        timePuntaje = 0;
+        pasosVerificar = 0;
+        pasosPuntaje = 0;
     }
 
 }

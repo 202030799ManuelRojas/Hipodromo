@@ -12,6 +12,9 @@ public class ListaEnlazada {
     private Nodo<Apuesta> first;
     private Nodo<Apuesta> last;
     private int size = 0;
+    public static long timeSort;
+    public static int pasosSort;
+
     /**
      * Constructor de una lista enlazada para apuestas
      */
@@ -59,7 +62,10 @@ public class ListaEnlazada {
      * @param isAlfabetic valor que indica si se ordenará de manera alfabetica (true) o por punteo (false).
      */
 
-    public void insertionSort(boolean isAlfabetic) {                                                                            //1
+    public void insertionSort(boolean isAlfabetic) {  
+        timeSort = 0;
+        pasosSort = 3;
+        long inicio = System.currentTimeMillis();                                                                          //1
         Nodo <Apuesta> anterior = first;                                                                                        //1
         Nodo <Apuesta> actual;                                                                                                  //1
         Apuesta temporal;                                                                                                       //1
@@ -74,10 +80,14 @@ public class ListaEnlazada {
                     : temporal.getApostador().getPuntaje() > actual.getBefore().getValue().getApostador().getPuntaje())) {      //n(n)          
                 actual.setValue(actual.getBefore().getValue());                                                                 //n(n)
                 actual = actual.getBefore();                                                                                    //n(n)
+                pasosSort += 4;
             }
             actual.setValue(temporal);                                                                                          //n
             anterior = anterior.getNext();                                                                                      //n
+            pasosSort += 5;
         }
+        long fin = System.currentTimeMillis();
+        timeSort = fin-inicio;
     }
 
     /**

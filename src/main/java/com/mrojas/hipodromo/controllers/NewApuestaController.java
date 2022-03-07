@@ -11,6 +11,7 @@ import com.mrojas.hipodromo.models.Horse;
 import com.mrojas.hipodromo.util.ListaEnlazada;
 import com.mrojas.hipodromo.views.NewApuestaFrame;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,6 +34,7 @@ public class NewApuestaController {
     public NewApuestaController(NewApuestaFrame frame, ListaEnlazada apuestas) {
         this.apuestas = apuestas;
         this.frame = frame;
+        frame.setIconImage(new ImageIcon(getClass().getResource("/images/hipodromo.png")).getImage());
         listarCompetidores();
         model = new DefaultListModel<>();
         frame.getBtmAgregarApuesta().setEnabled(false);

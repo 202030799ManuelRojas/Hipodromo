@@ -15,6 +15,14 @@ public class Apuesta {
     private Apostador apostador;
     private Horse[] horses;
     private double monto;
+    private long timeVerificar;
+    private long timePuntaje;
+    private int pasosVerificar;
+    private int pasosPuntaje;
+    public static int maxPasoVerificar = 0;
+    public static int maxPasoPuntaje = 0;
+    public static int menPasoVerificar = 6;
+    public static int menPasoPuntaje = 54;
 
     /**
      * Constructor para crear una nueva apuesta
@@ -39,11 +47,25 @@ public class Apuesta {
      */
 
     public boolean isValid() {
+        pasosVerificar = 2;
+        long inicio = System.nanoTime();
+        long fin;
         for (int i = 0; i < horses.length - 1; i++) {    //2n+1
+            pasosVerificar += 3;
             if (horses[i].equals(horses[i + 1])) {       //(n-1)*1
+                pasosVerificar ++;
+                setMaxVerificar(pasosVerificar);
+                setMenVerificar(pasosVerificar);
+                fin = System.nanoTime();
+                timeVerificar = (fin-inicio);
                 return false;                           //(n-1)*1
             }
         }
+        setMaxVerificar(pasosVerificar);
+        setMenVerificar(pasosVerificar);
+        fin = System.nanoTime();
+        timeVerificar = (fin-inicio);
+        System.out.println("apuesta de: " + apostador.getName() + " " +timeVerificar);
         return true;
     }
 
@@ -55,15 +77,22 @@ public class Apuesta {
      *                  calcular los resultados.
      */
     public void calcularPunteo(Horse[] ganadores) {                     //1
+        pasosPuntaje = 4;
+        long inicio = System.nanoTime();
         int punteo = 10;                                                //1
 
         for (int i = 0; i < ganadores.length; i++) {                    //2n+2
             if (ganadores[i].getLugar() == horses[i].getLugar()) {      //n
+                pasosPuntaje++;
                 apostador.setPuntaje(punteo);                           //n
             }
             punteo--;                                                   //n
+            pasosPuntaje += 4;
         }
-
+        setMaxPuntaje(pasosPuntaje);
+        setMenPuntaje(pasosPuntaje);
+        long fin = System.nanoTime();
+        timePuntaje = (fin-inicio);
     }
 
     public Apostador getApostador() {
@@ -80,6 +109,48 @@ public class Apuesta {
 
     public void setMonto(double monto) {
         this.monto = monto;
+    }
+
+    public long getTimeVerificar(){
+        return timeVerificar;
+    }
+
+    public long getTimePuntaje(){
+        return timePuntaje;
+    }
+
+    
+
+    public int getPasosVerificar() {
+        return pasosVerificar;
+    }
+
+    public int getPasosPuntaje() {
+        return pasosPuntaje;
+    }
+
+    private void setMaxVerificar(int max){
+        if (max > maxPasoVerificar) {
+            maxPasoVerificar = max;
+        }
+    }
+
+    private void setMaxPuntaje(int max){
+        if (max > maxPasoPuntaje) {
+            maxPasoPuntaje = max;
+        }
+    }
+
+    private void setMenVerificar(int men){
+        if (men < menPasoVerificar) {
+            menPasoVerificar = men;
+        }
+    }
+
+    private void setMenPuntaje(int men){
+        if (men < menPasoPuntaje) {
+            menPasoPuntaje = men;
+        }
     }
 
     private static Horse[] alphabeticSort(Horse[] array) { // insertion sort
