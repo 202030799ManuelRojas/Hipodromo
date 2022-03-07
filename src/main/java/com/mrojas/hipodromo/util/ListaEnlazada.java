@@ -25,16 +25,16 @@ public class ListaEnlazada {
      * @param value la apuesta que se va a ingresar a la lista.
      */
 
-    public void push(Apuesta value){
-        if (first == null){
-            last = new Nodo<>(value);
-            first = last;
+    public void push(Apuesta value){                                //1
+        if (first == null){                                         //1
+            last = new Nodo<>(value);                               //1
+            first = last;                                           //1
         }else{
-            Nodo<Apuesta> newValue = new Nodo<>(value, null, last);
-            last.setNext(newValue);
-            last = newValue;
+            Nodo<Apuesta> newValue = new Nodo<>(value, null, last); //1
+            last.setNext(newValue);                                 //1
+            last = newValue;                                        //1
         }
-        this.size++;
+        this.size++;                                                //1
     }
 
     /**
@@ -59,27 +59,25 @@ public class ListaEnlazada {
      * @param isAlfabetic valor que indica si se ordenará de manera alfabetica (true) o por punteo (false).
      */
 
-    public void insertionSort(boolean isAlfabetic) {
-        Nodo <Apuesta> anterior = first;
-        Nodo <Apuesta> actual;
-        Apuesta temporal;
+    public void insertionSort(boolean isAlfabetic) {                                                                            //1
+        Nodo <Apuesta> anterior = first;                                                                                        //1
+        Nodo <Apuesta> actual;                                                                                                  //1
+        Apuesta temporal;                                                                                                       //1
         
-        while(anterior != null){
-            actual = anterior;
-            temporal = anterior.getValue();
+        while(anterior != null){                                                                                                //n
+            actual = anterior;                                                                                                  //n
+            temporal = anterior.getValue();                                                                                     //n
             
-            while (actual != first 
+            while (actual != first                                                                                              //n(n)
                     && (isAlfabetic 
-                    ? temporal.getApostador().getName().compareTo(actual.getBefore().getValue().getApostador().getName()) < 0 
-                    : temporal.getApostador().getPuntaje() > actual.getBefore().getValue().getApostador().getPuntaje())) {                
-                actual.setValue(actual.getBefore().getValue());
-                actual = actual.getBefore();
+                    ? temporal.getApostador().getName().compareTo(actual.getBefore().getValue().getApostador().getName()) < 0   //n(n)
+                    : temporal.getApostador().getPuntaje() > actual.getBefore().getValue().getApostador().getPuntaje())) {      //n(n)          
+                actual.setValue(actual.getBefore().getValue());                                                                 //n(n)
+                actual = actual.getBefore();                                                                                    //n(n)
             }
-            actual.setValue(temporal);
-            anterior = anterior.getNext();
+            actual.setValue(temporal);                                                                                          //n
+            anterior = anterior.getNext();                                                                                      //n
         }
-        
-        
     }
 
     /**

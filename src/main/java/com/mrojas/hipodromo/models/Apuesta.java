@@ -39,9 +39,9 @@ public class Apuesta {
      */
 
     public boolean isValid() {
-        for (int i = 0; i < horses.length - 1; i++) {
-            if (horses[i].equals(horses[i + 1])) {
-                return false;
+        for (int i = 0; i < horses.length - 1; i++) {    //2n+1
+            if (horses[i].equals(horses[i + 1])) {       //(n-1)*1
+                return false;                           //(n-1)*1
             }
         }
         return true;
@@ -54,14 +54,14 @@ public class Apuesta {
      * @param ganadores arreglo de los caballos con los cuales se comparará para
      *                  calcular los resultados.
      */
-    public void calcularPunteo(Horse[] ganadores) {
-        int punteo = 10;
+    public void calcularPunteo(Horse[] ganadores) {                     //1
+        int punteo = 10;                                                //1
 
-        for (int i = 0; i < ganadores.length; i++) {
-            if (ganadores[i].getLugar() == horses[i].getLugar()) {
-                apostador.setPuntaje(punteo);
+        for (int i = 0; i < ganadores.length; i++) {                    //2n+2
+            if (ganadores[i].getLugar() == horses[i].getLugar()) {      //n
+                apostador.setPuntaje(punteo);                           //n
             }
-            punteo--;
+            punteo--;                                                   //n
         }
 
     }

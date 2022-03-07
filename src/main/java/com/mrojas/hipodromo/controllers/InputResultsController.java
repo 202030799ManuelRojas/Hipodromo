@@ -63,23 +63,23 @@ public class InputResultsController {
 
     /**
      * Metodo para obtener las apuestas validas de todas las que se han ingresado.
-     * Tiene un time complexity de O(n)
+     * Tiene un time complexity de O(n^2)
      * @param todas listado de las apuestas acumuladas.
      * @return Retorna una lista con las apuestas validas.
      */
     
-    public ListaEnlazada getValidApuestas(ListaEnlazada todas){
-        ListaEnlazada validas = new ListaEnlazada();
-        while (todas.size() > 0) {            
-            Apuesta apuesta = todas.pop();
-            if (apuesta.isValid()) {
-                apuesta.calcularPunteo(Hipodromo.COMPETIDORES);
-                validas.push(apuesta);
+    public ListaEnlazada getValidApuestas(ListaEnlazada todas){                         //1
+        ListaEnlazada validas = new ListaEnlazada();                                    //1
+        while (todas.size() > 0) {                                                      //n
+            Apuesta apuesta = todas.pop();                                              //1
+            if (apuesta.isValid()) {                                                    //n*n
+                apuesta.calcularPunteo(Hipodromo.COMPETIDORES);                         //n*n
+                validas.push(apuesta);                                                  //1
             }else{
-                System.out.println("Apuesta no valida de: " + apuesta.getApostador());
+                System.out.println("Apuesta no valida de: " + apuesta.getApostador());  //1
             }
         }
-        return validas;
+        return validas;                                                                 //1
     }
 
     /**
